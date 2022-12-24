@@ -13,6 +13,7 @@ class Book(models.Model):
     authors = models.ManyToManyField("Author")
 
 
+
 class Publish(models.Model):
     name = models.CharField(max_length=32)
     city = models.CharField(max_length=64)
