@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LY</title>
+<body>
+{% load ly_tags %}
+My 第一个网页！
+
+<form action="/search/" method="post">
+        {% csrf_token %}
+        <input type="text" name="qpost">
+        <input type="Integer" name="qpost2">
+        <input type="submit" value="save new user">
+</form>
+<p> {{ input_posttext }}</p>
+<form action="/search/" method="get">
+        <input type="text" name="qget">
+        <input type="submit" value="搜索">
+</form>
+<p> {{ input_gettext }}</p>
+
+<h1>Hello World!</h1>
+<p> Django 测试 !!!</p>
+{% block mainbody %}
+   <p>original</p>
+{% endblock %}
+
+
+<p>
+    <h1>LY_tags:</h1>
+    {{ 11|my_filter:22 }}
+{# 在 HTML 中使用自定义标签。#}
+    {%  ly_tag1 11 22 33%}
+</p>
+<p>
+    {% my_html "搜索" "text" %}
+</p>
+<p>
+    {% load static %}
+{{IMG}}<img decoding="async" src="{% static 'images/mob.png' %}" alt="mob-png">
+</p>
+
+
+<p>
+{%if time >= 90 and time <= 100 %}
+优秀
+{% elif time >= 80 and time < 90 %}
+良好
+{% elif time >= 70 and time < 80 %}
+合格
+{% elif time >= 60 and time < 70 %}
+不及格
+{% else %}
+输入错误
+{% endif %}
+</p>
+<ul>
+    {%  for url in url_list reversed %}
+        <li><a href={{ url }}>{{ url }}</a>  </li>
+    {% endfor %}
+</ul>
+
+
+{%  for i,j in Dict.items %}
+<li>{{ i }}: {{ j }}</li>
+{% endfor %}
+<p>
+    {% for i in listvar %}
+    {{ forloop.counter }}
+    {{ forloop.counter0 }}
+    {{ forloop.revcounter }}
+    {{ forloop.revcounter0 }}
+    {{ forloop.first }}
+    {{ forloop.last }}
+    {% empty %}
+    空的空的空的空的
+{% endfor %}
+</p>
+<p>
+    {% for fir,sec in DIC.items %}
+    <h2> {{ fir }}</h2>
+    {% for val in sec %}
+    <li>
+        {{ val }}
+    </li>
+    {% endfor %}
+{% endfor %}
+</p>
+
+{% if section is nowday %}
+<h1>section</h1>
+    {% else %}
+    NONONONO
+{% endif %}
+
+{# 注释这样搞~#}
+</body>
+</html>
